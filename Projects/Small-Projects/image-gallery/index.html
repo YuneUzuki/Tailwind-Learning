@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme:{
+                extend:{
+                    boxShadow:{
+                        solid: '0 2px 0 0 rgba(0, 0, 0, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <title>Image Gallery</title>
+</head>
+<body>
+    <div class="flex min-h-screen justify-center items-center bg-gradient-to-br from-fuchsia-500 to-cyan-400 py-12 px-3 md:px-0 md:py-0">
+        <div class="flex flex-col bg-gradient-to-b from-zinc-50 to-zinc-200 min-h-screen w-4/5 p-10 space-y-8">
+            <nav class="flex flex-row justify-center md:justify-end w-full my-6 p-2">
+                <ul class="flex flex-row space-x-4">
+                    <li><div class="p-2 hover:shadow-solid hover:shadow-zinc-800 duration-200">Vector</div></li>
+                    <li><div class="p-2 hover:shadow-solid hover:shadow-zinc-800 duration-200">Illustrations</div></li>
+                    <li><div class="p-2 hover:shadow-solid hover:shadow-zinc-800 duration-200">Images</div></li>
+                    <li><div class="p-2 hover:shadow-solid hover:shadow-zinc-800 duration-200">Logos</div></li>
+                </ul>
+            </nav>
+            <div class="flex flex-col md:flex-row justify-between w-full space-y-5 md:space-y-0 md:space-x-5">
+                <div class="flex flex-row w-full md:w-3/5 justify-between bg-white p-2 rounded-lg text-zinc-600 shadow-md">
+                    <input type="text" class="bg-zinc-100 p-2 rounded-md border-none w-full mr-2 placeholder:font-thin focus:outline-none focus:bg-zinc-200 duration-200" placeholder="Search"/>
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 text-gray-300 duration-200 hover:scale-110" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <circle cx="10" cy="10" r="7" />
+                            <line x1="21" y1="21" x2="15" y2="15" />
+                        </svg>
+                    </button>
+                </div>
+                <button class="w-full md:w-1/5 bg-black outline outline-1 hover:outline-none rounded-xl text-white text-lg p-2 hover:bg-zinc-200 hover:text-black hover:shadow-md duration-200">
+                    Upload
+                </button>
+            </div>
+            <div class="
+            md:grid md:grid-cols-3 md:grid-rows-2 gap-4
+            flex flex-col justify-center items-start
+            w-full">
+                <div class="relative group">
+                    <img class="group-hover:scale-105 group-hover:rotate-1 shadow-md group-hover:rounded-lg duration-200" src="../../../assets/image-gallery/images/image1.jpg">
+                    <div class="flex flex-col space-y-0 px-2 py-0.5 bg-black bg-opacity-70 w-full absolute inset-x-0 bottom-0 opacity-0 group-hover:opacity-100 duration-500 rounded-lg rounded-t">
+                        <p class="text-lg text-white">Transgener</p>
+                        <p class="text-sm text-gray-400">TransflagTransflag</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img class="group-hover:scale-105 group-hover:rotate-1 shadow-md group-hover:rounded-lg duration-200" src="../../../assets/image-gallery/images/image2.jpg">
+                    <div class="flex flex-col space-y-0 px-2 py-0.5 bg-black bg-opacity-70 w-full absolute inset-x-0 bottom-0 opacity-0 group-hover:opacity-100 duration-500 rounded-lg rounded-t">
+                        <p class="text-lg text-white">Sophia!</p>
+                        <p class="text-sm text-gray-400">Drawn by yours truly</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img class="group-hover:scale-105 group-hover:rotate-1 shadow-md group-hover:rounded-lg duration-200" src="../../../assets/image-gallery/images/image3.jpg">
+                    <div class="flex flex-col space-y-0 px-2 py-0.5 bg-black bg-opacity-70 w-full absolute inset-x-0 bottom-0 opacity-0 group-hover:opacity-100 duration-500 rounded-lg rounded-t">
+                        <p class="text-lg text-white">Sakura Miku</p>
+                        <p class="text-sm text-gray-400">She's so cute and pretty</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img class="group-hover:scale-105 group-hover:rotate-1 shadow-md group-hover:rounded-lg duration-200" src="../../../assets/image-gallery/images/image4.jpg">
+                    <div class="flex flex-col space-y-0 px-2 py-0.5 bg-black bg-opacity-70 w-full absolute inset-x-0 bottom-0 opacity-0 group-hover:opacity-100 duration-500 rounded-lg rounded-t">
+                        <p class="text-lg text-white">Miku</p>
+                        <p class="text-sm text-gray-400">A wild Miku on her natural habitat</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img class="group-hover:scale-105 group-hover:rotate-1 shadow-md group-hover:rounded-lg duration-200" src="../../../assets/image-gallery/images/image5.jpg">
+                    <div class="flex flex-col space-y-0 px-2 py-0.5 bg-black bg-opacity-70 w-full absolute inset-x-0 bottom-0 opacity-0 group-hover:opacity-100 duration-500 rounded-lg rounded-t">
+                        <p class="text-lg text-white">Nya~</p>
+                        <p class="text-sm text-gray-400">I call it the nyacode</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img class="group-hover:scale-105 group-hover:rotate-1 shadow-md group-hover:rounded-lg duration-200" src="../../../assets/image-gallery/images/image6.jpg">
+                    <div class="flex flex-col space-y-0 px-2 py-0.5 bg-black bg-opacity-70 w-full absolute inset-x-0 bottom-0 opacity-0 group-hover:opacity-100 duration-500 rounded-lg rounded-t">
+                        <p class="text-lg text-white">Nadeshiko</p>
+                        <p class="text-sm text-gray-400">Just Nadeshiko being herself</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
