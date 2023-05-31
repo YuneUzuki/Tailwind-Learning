@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.none {
+    display: none;
+}
+
+@media (min-width: 768px) { 
+    .md\:none {
+        display: none;
+    }
+}

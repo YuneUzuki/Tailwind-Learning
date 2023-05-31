@@ -1,11 +1,353 @@
 <!doctype html>
-<html>
+<html class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../dist/output.css" rel="stylesheet">
+  <script src="script.js"></script>
 </head>
-<body>
-    Backlog Manager!!!!!
+<body onload="SetBaseTheme(), ToggleMenu()">
+    <div class="flex flex-col space-y-2 min-w-screen min-h-screen dark:bg-zinc-700 bg-white pt-24 md:pt-20 p-20 relative">
+      <div class="fixed top-0 z-10 dark:bg-zinc-700 bg-white h-20 w-full"></div>
+      <nav class="fixed flex flex-row z-20 inset-x-[67px] top-0 dark:bg-zinc-600 bg-slate-300 to-transparent text-white py-3 px-5 items-center justify-between shadow-md m-3 rounded-t-xl">
+        <div class="flex flex-row space-x-4 items-center">
+          <svg class="md:w-10 md:h-10 h-6 w-6 dark:invert" fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+            <path d="M136,48V176H88V80H40V48a7.99993,7.99993,0,0,1,8-8H80a7.99993,7.99993,0,0,1,8,8,7.99993,7.99993,0,0,1,8-8h32A7.99993,7.99993,0,0,1,136,48Zm89.8877,149.64526-8.28223-30.90966-46.36426,12.42334,8.28223,30.90966a7.99989,7.99989,0,0,0,9.79785,5.65674l30.90967-8.28222A7.9999,7.9999,0,0,0,225.8877,197.64526ZM184.47656,43.09717a7.99994,7.99994,0,0,0-9.79785-5.657L143.769,45.72241a8.00015,8.00015,0,0,0-5.65674,9.7981l8.28223,30.90954,46.36426-12.42334Z" opacity="0.2"/>
+            <path d="M233.61523,195.5752,192.2041,41.02637a16.0157,16.0157,0,0,0-19.5957-11.31348l-30.91016,8.28223c-.33935.09094-.66357.20923-.99219.32043A15.96591,15.96591,0,0,0,128,32H96a15.8799,15.8799,0,0,0-8,2.16492A15.8799,15.8799,0,0,0,80,32H48A16.01833,16.01833,0,0,0,32,48V208a16.01833,16.01833,0,0,0,16,16H80a15.8799,15.8799,0,0,0,8-2.16492A15.8799,15.8799,0,0,0,96,224h32a16.01833,16.01833,0,0,0,16-16V108.40283l27.7959,103.73584a15.992,15.992,0,0,0,19.5957,11.31445l30.91016-8.28222A16.01822,16.01822,0,0,0,233.61523,195.5752ZM156.19238,92.08679l30.91211-8.28259,20.71045,77.27234-30.917,8.28454ZM176.749,45.167l6.21338,23.18238-30.91113,8.28247L145.83984,53.4502ZM128,48l.00732,120H96V48ZM80,48V72H48V48ZM48,208V88H80V208Zm80,0H96V184h32.0083l.00147,24Zm90.16016-8.28418-30.90967,8.28223-6.21143-23.18189,30.918-8.28491,6.21289,23.18164Z"/>
+          </svg>
+          <p class="font-bold text-md md:text-lg dark:text-white text-black select-none">Backlog Manager</p>
+        </div>
+        <div class="flex flex-row space-x-4 items-center collapse md:visible">
+          <div class="group flex flex-row space-x-2 items-center bg-white dark:bg-zinc-400 rounded-md p-2">
+            <input type="text" placeholder="Search" class="bg-transparent dark:placeholder:text-zinc-600 duration-200 focus:outline-none focus:border-none">
+            <button class="hover:scale-110 hover:rotate-12 duration-200">
+              <svg class="w-6 h-6 dark:opacity-70 opacity-30" width="800px" height="800px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path fill="#000000" fill-rule="evenodd" d="M4 9a5 5 0 1110 0A5 5 0 014 9zm5-7a7 7 0 104.2 12.6.999.999 0 00.093.107l3 3a1 1 0 001.414-1.414l-3-3a.999.999 0 00-.107-.093A7 7 0 009 2z"/>
+              </svg>
+            </button>
+          </div>
+          <button class="p-2 dark:bg-zinc-500 dark:hover:bg-zinc-700 bg-slate-400 hover:bg-slate-500 duration-200 rounded-md"><svg class="w-6 z-0 h-6 invert" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="Communication / Bell_Ring">
+            <path id="Vector" d="M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9M15 17H18.5905C18.973 17 19.1652 17 19.3201 16.9478C19.616 16.848 19.8475 16.6156 19.9473 16.3198C19.9997 16.1643 19.9997 15.9715 19.9997 15.5859C19.9997 15.4172 19.9995 15.3329 19.9863 15.2524C19.9614 15.1004 19.9024 14.9563 19.8126 14.8312C19.7651 14.7651 19.7047 14.7048 19.5858 14.5858L19.1963 14.1963C19.0706 14.0706 19 13.9001 19 13.7224V10C19 6.134 15.866 2.99999 12 3C8.13401 3.00001 5 6.13401 5 10V13.7224C5 13.9002 4.92924 14.0706 4.80357 14.1963L4.41406 14.5858C4.29477 14.7051 4.23504 14.765 4.1875 14.8312C4.09766 14.9564 4.03815 15.1004 4.0132 15.2524C4 15.3329 4 15.4172 4 15.586C4 15.9715 4 16.1642 4.05245 16.3197C4.15225 16.6156 4.3848 16.848 4.68066 16.9478C4.83556 17 5.02701 17 5.40956 17H9M18.0186 2.01367C19.3978 3.05299 20.4843 4.43177 21.1724 6.01574M5.98197 2.01367C4.60275 3.05299 3.5162 4.43177 2.82812 6.01574" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </svg></button>
+          <button class="flex flex-row space-x-2 rounded-md dark:bg-fuchsia-700 dark:hover:bg-fuchsia-800 bg-cyan-500 hover:bg-cyan-600 duration-200 p-2">
+            <svg class="w-6 h-6 z-0 invert" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> 
+              <g id="User / User_02"> <path id="Vector" d="M20 21C20 18.2386 16.4183 16 12 16C7.58172 16 4 18.2386 4 21M12 13C9.23858 13 7 10.7614 7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8C17 10.7614 14.7614 13 12 13Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+            </svg>
+            <p class="text-white">Account</p></button>
+          <button class="flex items-center rounded-md dark:bg-black bg-white dark:hover:bg-zinc-900 hover:bg-slate-200 duration-200 p-2" onclick="ChangeTheme()"><div class="w-6 h-6" id="theme-icon"></div></button>
+        </div>
+        <div class="md:none flex flex-row space-x-2">
+          <div class="group flex flex-row space-x-2 items-center bg-white dark:bg-zinc-400 rounded-md p-1">
+            <input type="text" placeholder="Search" class="bg-transparent placeholder:text-xs dark:placeholder:text-zinc-600 duration-200 focus:outline-none focus:border-none">
+            <button class="hover:scale-110 hover:rotate-12 duration-200">
+              <svg class="w-4 h-4 dark:opacity-70 opacity-30" width="800px" height="800px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path fill="#000000" fill-rule="evenodd" d="M4 9a5 5 0 1110 0A5 5 0 014 9zm5-7a7 7 0 104.2 12.6.999.999 0 00.093.107l3 3a1 1 0 001.414-1.414l-3-3a.999.999 0 00-.107-.093A7 7 0 009 2z"/>
+              </svg>
+            </button>
+          </div>
+          <button id="hamburger-icon" class="bg-none scale-150" onclick="ToggleMenu()"></button>
+        </div>
+      </nav>
+
+      <div id="nav-menu" class="fixed md:none w-48 z-20 h-fit dark:bg-zinc-500 bg-slate-300 rounded-md p-1 shadow-2xl shadow-zinc-800">
+        <ul class="flex flex-col items-start justify-center space-y-2">
+          <li class="flex flex-row space-x-4 items-center justify-start p-1 dark:text-white text-black dark:hover:bg-zinc-600 hover:bg-slate-400 w-full rounded-md hover:shadow-md duration-200">
+            <svg class="w-6 h-6 z-0 dark:invert" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="Communication / Bell_Ring">
+              <path id="Vector" d="M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9M15 17H18.5905C18.973 17 19.1652 17 19.3201 16.9478C19.616 16.848 19.8475 16.6156 19.9473 16.3198C19.9997 16.1643 19.9997 15.9715 19.9997 15.5859C19.9997 15.4172 19.9995 15.3329 19.9863 15.2524C19.9614 15.1004 19.9024 14.9563 19.8126 14.8312C19.7651 14.7651 19.7047 14.7048 19.5858 14.5858L19.1963 14.1963C19.0706 14.0706 19 13.9001 19 13.7224V10C19 6.134 15.866 2.99999 12 3C8.13401 3.00001 5 6.13401 5 10V13.7224C5 13.9002 4.92924 14.0706 4.80357 14.1963L4.41406 14.5858C4.29477 14.7051 4.23504 14.765 4.1875 14.8312C4.09766 14.9564 4.03815 15.1004 4.0132 15.2524C4 15.3329 4 15.4172 4 15.586C4 15.9715 4 16.1642 4.05245 16.3197C4.15225 16.6156 4.3848 16.848 4.68066 16.9478C4.83556 17 5.02701 17 5.40956 17H9M18.0186 2.01367C19.3978 3.05299 20.4843 4.43177 21.1724 6.01574M5.98197 2.01367C4.60275 3.05299 3.5162 4.43177 2.82812 6.01574" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </svg>
+            <p class="font-semibold select-none">Notifications</p>
+          </li>
+          <li class="flex flex-row space-x-4 items-center justify-start p-1 dark:text-white text-black dark:hover:bg-zinc-600 hover:bg-slate-400 w-full rounded-md hover:shadow-md duration-200">
+            <svg class="w-6 h-6 z-0 dark:invert" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> 
+              <g id="User / User_02"> <path id="Vector" d="M20 21C20 18.2386 16.4183 16 12 16C7.58172 16 4 18.2386 4 21M12 13C9.23858 13 7 10.7614 7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8C17 10.7614 14.7614 13 12 13Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+            </svg>
+            <p class="font-semibold select-none">Account</p>
+          </li>
+          <li class="flex flex-row space-x-4 items-center justify-start p-1 dark:text-white text-black dark:hover:bg-zinc-600 hover:bg-slate-400 w-full rounded-md hover:shadow-md duration-200" onclick="ChangeTheme()">
+            <div class="w-6 h-6" id="theme-icon-small"></div>
+            <p class="font-semibold select-none">Change Theme</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex flex-row w-full h-fit p-1 dark:bg-fuchsia-500 bg-cyan-300 rounded-md items-center">
+        <ul class="flex flex-row w-full space-x-4 items-center justify-evenly">
+          <li class="dark:text-white p-0 md:p-1 md:text-lg text-xs dark:hover:bg-fuchsia-600 hover:bg-cyan-400 rounded-md w-full text-center duration-200 underline">Games</li>
+          <li class="dark:text-white p-0 md:p-1 md:text-lg text-xs dark:hover:bg-fuchsia-600 hover:bg-cyan-400 rounded-md w-full text-center duration-200">Anime</li>
+          <li class="dark:text-white p-0 md:p-1 md:text-lg text-xs dark:hover:bg-fuchsia-600 hover:bg-cyan-400 rounded-md w-full text-center duration-200">Series</li>
+          <li class="dark:text-white p-0 md:p-1 md:text-lg text-xs dark:hover:bg-fuchsia-600 hover:bg-cyan-400 rounded-md w-full text-center duration-200">Books</li>
+          <li class="dark:text-white p-0 md:p-1 md:text-lg text-xs dark:hover:bg-fuchsia-600 hover:bg-cyan-400 rounded-md w-full text-center duration-200">Movies</li>
+        </ul>
+      </div>
+
+      <div id="main" class="flex flex-col md:flex-row space-y-2 md:space-x-2 md:space-y-0">
+        <div class="flex flex-col space-y-4 dark:bg-zinc-500 bg-slate-300 p-2 rounded-md w-full dark:border-fuchsia-500 border-cyan-300 border-2">
+          <div class="bg-gradient-to-b dark:from-fuchsia-600 from-cyan-300 to-transparent p-2 rounded-md">
+            <p class="dark:text-white font-bold w-full dark:bg-fuchsia-700 bg-cyan-400 p-1 text-xs md:text-lg text-center rounded-t-md">Most Popular in: Games</p>
+            <div class="flex flex-row space-x-4 items-center justify-between overflow-y-hidden overflow-x-auto py-4">
+              <div class="flex flex-col items-center justify-center group min-w-fit relative">
+                <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                  <div><p class="dark:text-white font-semibold text-sm">Xenoblade 3</p></div>
+                  <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">9.8/10</p></div>
+                  <div><p class="dark:text-white text-sm">RPG</p></div>
+                </div>
+                <img srcset="../assets/img/games/xenoblade3.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+              </div>  
+              <div class="flex flex-col items-center justify-center group min-w-fit relative">
+                <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                  <div><p class="dark:text-white font-semibold text-sm">DMC 5</p></div>
+                  <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">9.4/10</p></div>
+                  <div><p class="dark:text-white text-sm">Action</p></div>
+                </div>
+                <img srcset="../assets/img/games/dmc5.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+              </div>
+              <div class="flex flex-col items-center justify-center group min-w-fit relative">
+                <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                  <div><p class="dark:text-white font-semibold text-sm">Celeste</p></div>
+                  <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">10/10</p></div>
+                  <div><p class="dark:text-white text-sm">Platformer</p></div>
+                </div>
+                <img srcset="../assets/img/games/celeste.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+              </div>
+              <div class="flex flex-col items-center justify-center group min-w-fit relative">
+                <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                  <div><p class="dark:text-white font-semibold text-sm">GG Strive</p></div>
+                  <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">9.2/10</p></div>
+                  <div><p class="dark:text-white text-sm">Fighting</p></div>
+                </div>
+                <img srcset="../assets/img/games/ggstrive.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+              </div>
+              <div class="flex flex-col items-center justify-center group min-w-fit relative">
+                <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                  <div><p class="dark:text-white font-semibold text-sm">Terraria</p></div>
+                  <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">8.6/10</p></div>
+                  <div><p class="dark:text-white text-sm">Adventure</p></div>
+                </div>
+                <img srcset="../assets/img/games/terraria.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+              </div>
+              <div class="flex flex-col items-center justify-center group min-w-fit relative">
+                <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                  <div><p class="dark:text-white font-semibold text-sm">Neon White</p></div>
+                  <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">8/10</p></div>
+                  <div><p class="dark:text-white text-sm">Platformer</p></div>
+                </div>
+                <img srcset="../assets/img/games/neonwhite.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+              </div>
+              <div class="flex flex-col items-center justify-center group min-w-fit relative">
+                <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                  <div><p class="dark:text-white font-semibold text-sm">SMT IV</p></div>
+                  <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">9.3/10</p></div>
+                  <div><p class="dark:text-white text-sm">RPG</p></div>
+                </div>
+                <img srcset="../assets/img/games/smtiv.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+              </div>
+              <div class="flex flex-col items-center justify-center group min-w-fit relative">
+                <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                  <div><p class="dark:text-white font-semibold text-sm">FE:RD</p></div>
+                  <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">8.9/10</p></div>
+                  <div><p class="dark:text-white text-sm">Strategy</p></div>
+                </div>
+                <img srcset="../assets/img/games/radiantdawn.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="flex flex-col md:w-96 h-full space-y-4 dark:bg-zinc-500 bg-slate-300 p-2 rounded-md dark:border-fuchsia-500 border-cyan-300 border-2">
+            <div class="flex flex-col space-y-2 h-full bg-gradient-to-b dark:from-fuchsia-600 from-cyan-300 p-2 rounded-md">
+              <p class="font-semibold text-xs md:text-lg dark:text-white dark:bg-fuchsia-700 bg-cyan-400 p-1 rounded-t-md text-center">Top Review in: Games</p>
+              <div class="flex flex-col h-full w-full p-2 bg-gradient-to-b dark:from-fuchsia-700 from-cyan-400 rounded-t">
+                <div class="flex flex-row items-center justify-between py-1 px-3 dark:bg-fuchsia-800 bg-cyan-500 dark:text-white w-full rounded-t-md">
+                  <p class="font-semibold">Xenoblade Chronicles 3</p>
+                  <p class="font-thin">Yune</p>
+                </div>
+                <div class="p-2 h-full">
+                  <p class="dark:text-white">
+                    Xenoblade Chronicles 3 is an incredible entry in the series. Incredible gameplay, top-notch OST, a compelling but slightly rushed story, with a lot of thematical depth. The characters are incredible, with some impressive development and easy to get attached to. 3's biggest flaw is the fact that, for as good as everything is, it fails to be as memorable as 2 in most aspects, and it's awful antagonists
+                  </p>
+                </div>
+                <div class="flex flex-row items-center justify-between py-1 px-3 dark:bg-fuchsia-700 bg-cyan-400 dark:text-white w-full rounded-b-md">
+                  <p class="font-semibold">Rating: 9.5/10</p>
+                  <div class="flex flex-row space-x-1">
+                    <svg class="w-6 h-6 dark:invert" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g id="Interface / Heart_01">
+                      <path id="Vector" d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </g>
+                    </svg>
+                    <p class="font-thin">776</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2 dark:bg-zinc-500 bg-slate-300 w-full rounded-lg dark:border-fuchsia-500 border-cyan-300 border-2">
+        <div class=" flex flex-col bg-gradient-to-b dark:from-fuchsia-600 from-cyan-300 to-transparent p-2 rounded-md">
+          <p class="font-semibold text-xs md:text-lg dark:text-white dark:bg-fuchsia-700 bg-cyan-400 p-1 rounded-t-md text-center">Recent Releases in: Games</p>
+          <div class="flex flex-row space-x-4 items-center justify-between overflow-y-hidden overflow-x-auto py-4">
+            <div class="flex flex-col items-center justify-center group min-w-fit relative">
+              <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                <div><p class="dark:text-white font-semibold text-sm">XC3:FR</p></div>
+                <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">10/10</p></div>
+                <div><p class="dark:text-white text-sm">DLC</p></div>
+              </div>
+              <img srcset="../assets/img/games/futureredeemed.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+            </div>  
+            <div class="flex flex-col items-center justify-center group min-w-fit relative">
+              <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                <div><p class="dark:text-white font-semibold text-sm">Reverie</p></div>
+                <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">9/10</p></div>
+                <div><p class="dark:text-white text-sm">RPG</p></div>
+              </div>
+              <img srcset="../assets/img/games/reverie.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+            </div>
+            <div class="flex flex-col items-center justify-center group min-w-fit relative">
+              <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                <div><p class="dark:text-white font-semibold text-sm">Farewell</p></div>
+                <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">10/10</p></div>
+                <div><p class="dark:text-white text-sm">DLC</p></div>
+              </div>
+              <img srcset="../assets/img/games/farewell.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+            </div>
+            <div class="flex flex-col items-center justify-center group min-w-fit relative">
+              <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                <div><p class="dark:text-white font-semibold text-sm">FE Engage</p></div>
+                <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">8/10</p></div>
+                <div><p class="dark:text-white text-sm">Strategy</p></div>
+              </div>
+              <img srcset="../assets/img/games/engage.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+            </div>
+            <div class="flex flex-col items-center justify-center group min-w-fit relative">
+              <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                <div><p class="dark:text-white font-semibold text-sm">Zelda: ToTK</p></div>
+                <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">8.2/10</p></div>
+                <div><p class="dark:text-white text-sm">Adventure</p></div>
+              </div>
+              <img srcset="../assets/img/games/totk.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+            </div>
+            <div class="flex flex-col items-center justify-center group min-w-fit relative">
+              <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                <div><p class="dark:text-white font-semibold text-sm">SMT V</p></div>
+                <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">6.4/10</p></div>
+                <div><p class="dark:text-white text-sm">RPG</p></div>
+              </div>
+              <img srcset="../assets/img/games/smtv.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+            </div>
+            <div class="flex flex-col items-center justify-center group min-w-fit relative">
+              <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                <div><p class="dark:text-white font-semibold text-sm">Bayonetta 3</p></div>
+                <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">7.2/10</p></div>
+                <div><p class="dark:text-white text-sm">Action</p></div>
+              </div>
+              <img srcset="../assets/img/games/bayo3.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+            </div>
+            <div class="flex flex-col items-center justify-center group min-w-fit relative">
+              <div class="invisible md:visible grid grid-cols-2 grid-rows-2 absolute opacity-0 group-hover:opacity-100 bg-opacity-70 dark:bg-opacity-70 dark:bg-fuchsia-700 bg-cyan-300 p-2 inset-x-0 bottom-0 z-10 transform group-hover:rotate-2 duration-200 group-hover:scale-105 m-3">
+                <div><p class="dark:text-white font-semibold text-sm">Elden Ring</p></div>
+                <div class="row-span-2"><p class="dark:text-white text-xl text-center justify-self-center">8/10</p></div>
+                <div><p class="dark:text-white text-sm">Adventure</p></div>
+              </div>
+              <img srcset="../assets/img/games/eldenring.png 1500w" class="rounded-md border-2 dark:border-fuchsia-900 border-cyan-800 transform group-hover:scale-105 group-hover:rotate-2 duration-200">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="p-1 w-full dark:bg-fuchsia-600 bg-cyan-300 rounded-md"></div>
+      <br>
+
+      <div class="flex flex-col space-y-2 dark:text-white">
+        <div class="flex flex-row space-x-2 font-thin text-md md:text-2xl md:p-2 bg-gradient-to-r dark:from-zinc-800 from-slate-300 p-1 rounded-md bg-opacity-25 border-2 dark:border-fuchsia-500 border-cyan-300 dark:text-white"><p>News</p>
+        </div>
+        <div class="flex flex-col md:flex-row md:space-x-4 md:space-y-0 space-y-4 items-start">
+          <div class="flex flex-col space-y-4 md:w-[33%] w-full">
+            <div class="bg-gradient-to-br dark:from-zinc-800 from-slate-300 p-2 rounded-md dark:border-fuchsia-500 border-cyan-300 border h-fit hover:scale-105 hover:shadow-xl shadow-md duration-200 w-full">
+              <p class="font-semibold md:text-lg text-sm">Tears of the Kindgom Release</p>
+              <p class="font-thin md:text-md text-xs">The Legend of Zelda: Tears of the Kingdom, released May 12th 2023, to overwhelming success, both critically and in sales, is looking to be one of, if not the best seller in the Zelda series</p>
+              <br>
+              <p class="font-extralight text-xs dark:text-gray-400 text-gray-500">< Read More ></p>
+            </div>
+            <div class="bg-gradient-to-br dark:from-zinc-800 from-slate-300 p-2 rounded-md dark:border-fuchsia-500 border-cyan-300 border h-fit hover:scale-105 hover:shadow-xl shadow-md duration-200 w-full">
+              <p class="font-semibold md:text-lg text-sm">Final Fantasy XVI, temporary exclusive?</p>
+              <p class="font-thin md:text-md text-xs">Despite our best attempts at trying to talk with Square Enix to confirm or deconfirm that the game is coming to PC, we have very good reason to believe it's gonna be just a temporary exclusive, and not for too long either. There's reason to believe it's not only coming to PC, but also to Xbox</p>
+              <br>
+              <p class="font-extralight text-xs dark:text-gray-400 text-gray-500">< Read More ></p>
+            </div>
+          </div>
+          <div class="flex flex-col space-y-4 md:w-[33%] w-full">
+            <div class="bg-gradient-to-br dark:from-zinc-800 from-slate-300 p-2 rounded-md dark:border-fuchsia-500 border-cyan-300 border h-fit hover:scale-105 hover:shadow-xl shadow-md duration-200 w-full">
+              <p class="font-semibold md:text-lg text-sm">Meet Strive's Cutest Girl: Bridget!</p>
+              <p class="font-thin md:text-md text-xs">From a nice trans rep to an incredibly fun character to play as, Bridget took the fandom by storm. And with reason. On this article we'll go over her story and gameplay, ignoring the chaos this community was in for a while, to keep this a safe space for all</p>
+              <br>
+              <p class="font-extralight text-xs dark:text-gray-400 text-gray-500">< Read More ></p>
+            </div>
+            <div class="bg-gradient-to-br dark:from-zinc-800 from-slate-300 p-2 rounded-md dark:border-fuchsia-500 border-cyan-300 border h-fit hover:scale-105 hover:shadow-xl shadow-md duration-200 w-full">
+              <p class="font-semibold md:text-lg text-sm">Monolithsoft's next Releases</p>
+              <p class="font-thin md:text-md text-xs">With Xenoblade 3 and it's DLC roadmap all completed, it's time to think about the future. Considering Future Redeemed and it's very not subtle teaser, what can we expect from them? Xenoblade 4? X2? Saga 4? Or even a new IP</p>
+              <br>
+              <p class="font-extralight text-xs dark:text-gray-400 text-gray-500">< Read More ></p>
+            </div>
+          </div>
+          <div class="flex flex-col space-y-4 md:w-[33%] w-full">
+            <div class="bg-gradient-to-br dark:from-zinc-800 from-slate-300 p-2 rounded-md dark:border-fuchsia-500 border-cyan-300 border h-fit hover:scale-105 hover:shadow-xl shadow-md duration-200 w-full">
+              <p class="font-semibold md:text-lg text-sm">What is next for Nintendo?</p>
+              <p class="font-thin md:text-md text-xs">Let's face it, the Switch lost it's hype. The years prior were insane, but it's hit it's peak, and now the sales are declining. ToTK might revitalize it for a small while, but it's about time Nintendo started thinking about their next console</p>
+              <br>
+              <p class="font-extralight text-xs dark:text-gray-400 text-gray-500">< Read More ></p>
+            </div>
+            <div class="bg-gradient-to-br dark:from-zinc-800 from-slate-300 p-2 rounded-md dark:border-fuchsia-500 border-cyan-300 border h-fit hover:scale-105 hover:shadow-xl shadow-md duration-200 w-full">
+              <p class="font-semibold md:text-lg text-sm">Dev Notes</p>
+              <p class="font-thin md:text-md text-xs">Yune here. Just a disclaimer really. None of the news, reviews or ratings on this project I'm making are real ofc. This is just me having some fun while learning some TailwindCSS. With that outta the way, I hope the layout looks nice and clean! I sure tried lol</p>
+              <br>
+              <p class="font-extralight text-xs dark:text-gray-400 text-gray-500">< Read More ></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="p-1 w-full dark:bg-fuchsia-600 bg-cyan-300 rounded-md"></div>
+      <br>
+
+      <div class="flex flex-col space-y-4">
+        <div class="flex flex-row font-thin text-md md:text-2xl md:p-2 bg-gradient-to-r dark:from-zinc-800 from-slate-300 p-1 rounded-md bg-opacity-25 border-2 dark:border-fuchsia-500 border-cyan-300 dark:text-white"><p>Tools</p>
+          <svg class="md:w-8 md:h-8 h-6 w-6 dark:invert" fill="#000000" width="800px" height="800px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <title>hammer</title>
+            <path d="M12.312 10.015l-3.379-2.514 3.379-2.425h10.656v4.938h-10.656zM16.032 3.003h2.928v0.997h-2.928v-0.997zM18.943 11.099l1.104 17.604c0 0.715-0.578 1.293-1.293 1.293h-2.523c-0.715 0-1.293-0.578-1.293-1.293l1.045-17.604h2.96zM17.527 28.602c0.55 0 0.996-0.445 0.996-0.996s-0.446-0.996-0.996-0.996c-0.551 0-0.997 0.445-0.997 0.996s0.447 0.996 0.997 0.996z"></path>
+          </svg>
+        </div>
+        <div class="grid grid-rows-2 grid-cols-2 gap-4">
+          <div class="bg-gradient-to-br dark:from-zinc-800 from-slate-300 p-2 rounded-md dark:border-fuchsia-500 border-cyan-300 border h-fit hover:scale-105 hover:shadow-xl shadow-md duration-200 w-full">
+            <p class="font-semibold dark:text-white text-lg">Manage Friends</p>
+            <p class="font-thin dark:text-white text-sm">Find other users you might know, add and remove friends, and see what they're up to! You can access their profile and see their own logs</p>
+          </div>
+          <div class="bg-gradient-to-br dark:from-zinc-800 from-slate-300 p-2 rounded-md dark:border-fuchsia-500 border-cyan-300 border h-fit hover:scale-105 hover:shadow-xl shadow-md duration-200 w-full">
+            <p class="font-semibold dark:text-white text-lg">Find Recommendations</p>
+            <p class="font-thin dark:text-white text-sm">Let the algorythm take a look at your backlog, the kinda stuff you like, and recommend you new games, anime, movies, series or books to try</p>
+          </div>
+          <div class="bg-gradient-to-br dark:from-zinc-800 from-slate-300 p-2 rounded-md dark:border-fuchsia-500 border-cyan-300 border h-fit hover:scale-105 hover:shadow-xl shadow-md duration-200 w-full">
+            <p class="font-semibold dark:text-white text-lg">Blacklists</p>
+            <p class="font-thin dark:text-white text-sm">Here you can blacklist genres, producers, specific series, to hide them from your recommendations. They will still show up on other people's profiles however. You can also use this tool to block users</p>
+          </div>
+          <div class="bg-gradient-to-br dark:from-zinc-800 from-slate-300 p-2 rounded-md dark:border-fuchsia-500 border-cyan-300 border h-fit hover:scale-105 hover:shadow-xl shadow-md duration-200 w-full">
+            <p class="font-semibold dark:text-white text-lg">Add Custom Log</p>
+            <p class="font-thin dark:text-white text-sm">Consumed some media not in our database? Not to worry, you create a custom log of your own. It's gonna be kept private until it's approved, but as long as there's nothing against the rules, it's gonna be accepted</p>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="p-1 w-full dark:bg-fuchsia-600 bg-cyan-300 rounded-md"></div>
+
+      <p class="font-thin text-sm dark:text-white">Made by Yune for the purpose of learning TailwindCSS</p>
+
+    </div>
 </body>
 </html>
