@@ -1,0 +1,9 @@
+Bell (notifications): https://www.svgrepo.com/svg/510851/bell-ring
+Books (logo): https://www.svgrepo.com/svg/363376/books-duotone
+Cancel (menu close): https://www.svgrepo.com/svg/485656/cancel2
+Hamburger (menu open): https://www.svgrepo.com/svg/506660/hamburger
+Hammer (tools): https://www.svgrepo.com/svg/485731/hammer
+Heart (review likes): https://www.svgrepo.com/svg/511015/heart-01
+Moon (dark theme): https://www.svgrepo.com/svg/511078/moon
+Sun (light theme): https://www.svgrepo.com/svg/511154/sun
+User (account): https://www.svgrepo.com/svg/511185/user-02
